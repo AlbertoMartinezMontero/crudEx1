@@ -1,7 +1,7 @@
 package it.iad2.dto4;
 
 public class StringaDto {
-    private String criterio;
+    public String criterio;
 
     public StringaDto() {
     }

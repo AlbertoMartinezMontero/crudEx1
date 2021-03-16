@@ -3,7 +3,7 @@ package it.iad2.dto4;
 import it.iad2.model4.Oggetto;
 
 public class OggettoDto {
-    private Oggetto oggetto;
+    public Oggetto oggetto;
 
     public OggettoDto() {
     }

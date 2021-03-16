@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Prodotto } from './prodotto';
 import { Event } from './automa/event';
+import { OggettoDto } from './oggetto-dto';
+import { ListaOggettiDto } from './lista-oggetti-dto';
+import { StringaDto } from './stringa-dto';
 
 @Component({
   selector: 'app-root',
@@ -83,18 +86,44 @@ export class AppComponent implements Automabile, OnInit {
 
   conferma() {
     this.automa.next(new ConfermaEvent());
+    if (this.prodotto.codice != null && this.prodotto.descrizione != null) {
+
+      let dto: OggettoDto = new OggettoDto();
+      dto.prodotto = this.prodotto;
+
+      let oss: Observable<ListaOggettiDto> = this.http.post<ListaOggettiDto>(
+        "http://localhost:8080/conferma", dto);
+
+      oss.subscribe(o => this.prodotti = o.listaProdotti);
+    }
   }
 
   annulla() {
     this.automa.next(new AnnullaEvent());
+    this.prodotto.codice = "";
+    this.prodotto.descrizione = "";
+    
   }
 
   rimuovi() {
     this.automa.next(new RimuoviEvent());
+    this.automa.next(new AnnullaEvent());
+    let dto: OggettoDto = new OggettoDto();
+    dto.prodotto = this.prodotto;
+
+    let oy: Observable<ListaOggettiDto> = this.http.post<ListaOggettiDto>("http://localhost:8080/rimuovi", dto);
+    oy.subscribe(r => this.prodotti = r.listaProdotti);
   }
+
+  
 
   cerca() {
     this.automa.next(new RicercaEvent());
+    let dto: StringaDto = new StringaDto();
+    dto.criterio = this.searchCriterion;
+    let oc: Observable<OggettoDto> = this.http.post<OggettoDto>("http://localhost:8080/cerca", dto);
+    oc.subscribe(c => this.prodotto = c.prodotto);
+
   }
 
   seleziona(prod: Prodotto) {
@@ -102,7 +131,8 @@ export class AppComponent implements Automabile, OnInit {
   }
 
   aggiorna() {
-    let oss: Observable<Prodotto[]> = this.http.get<Prodotto[]>('http://localhost:8080/aggiorna');
-    oss.subscribe(r => this.prodotti = r);
+
+    let oss: Observable<ListaOggettiDto> = this.http.get<ListaOggettiDto>('http://localhost:8080/aggiorna');
+    oss.subscribe(r => this.prodotti = r.listaProdotti);
   }
 }
