@@ -1,14 +1,30 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package it.iad2.dto4;
 
-/**
- *
- * @author utente
- */
+import it.iad2.model4.Oggetto;
+
 public class OggettoDto {
+    private Oggetto oggetto;
+
+    public OggettoDto() {
+    }
+
+    public OggettoDto(Oggetto oggetto) {
+        this.oggetto = oggetto;
+    }
+
+    public Oggetto getOggetto() {
+        return oggetto;
+    }
+
+    public void setOggetto(Oggetto oggetto) {
+        this.oggetto = oggetto;
+    }
+
+    @Override
+    public String toString() {
+        return "OggettoDto{" + "oggetto=" + oggetto + '}';
+    }
+    
+     
     
 }

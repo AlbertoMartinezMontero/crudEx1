@@ -1,14 +1,23 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package it.iad2.service4;
 
-/**
- *
- * @author utente
- */
-public class ServiceQuattro {
+import it.iad2.dto4.ListaOggettiDto;
+import it.iad2.dto4.OggettoDto;
+import it.iad2.model4.Oggetto;
+
+public interface ServiceQuattro {
+
+    ListaOggettiDto conferma(Oggetto p);
+
+    OggettoDto modifica(Oggetto p);
+    // OggettoDto annulla (Oggetto p); Da gestire lato client?
+
+    ListaOggettiDto rimuovi(Oggetto p);
+
+    OggettoDto cerca(String s);
     
+    OggettoDto seleziona(Oggetto p);
+    
+    ListaOggettiDto aggiornaLista();
+    
+
 }

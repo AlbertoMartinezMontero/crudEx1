@@ -1,14 +1,28 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package it.iad2.dto4;
 
-/**
- *
- * @author utente
- */
 public class StringaDto {
+    private String criterio;
+
+    public StringaDto() {
+    }
+
+    public StringaDto(String criterio) {
+        this.criterio = criterio;
+    }
+
+    public String getCriterio() {
+        return criterio;
+    }
+
+    public void setCriterio(String criterio) {
+        this.criterio = criterio;
+    }
+
+    @Override
+    public String toString() {
+        return "StringaDto{" + "criterio=" + criterio + '}';
+    }
+    
+    
     
 }

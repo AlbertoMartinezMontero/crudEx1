@@ -1,14 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package it.iad2.repository4;
 
-/**
- *
- * @author utente
- */
-public class RepositoryQuattro {
-    
+import it.iad2.model4.Oggetto;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface RepositoryQuattro extends JpaRepository<Oggetto, Long> {
+
+    public Oggetto findByCodice(String s);
+
 }
